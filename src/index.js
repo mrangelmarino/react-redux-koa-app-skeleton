@@ -14,4 +14,4 @@ ReactDOM.render((
         <App />
     </BrowserRouter>
   </Provider>
-), document.getElementById('buckets'))
+), document.getElementById('app'))
