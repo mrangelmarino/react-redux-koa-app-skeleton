@@ -1,2 +1,3 @@
 # react-redux-koa-app-skeleton
-skeleton for app building
+
+Basic skeleton for quickly prototyping a React, Redux, Koa based app.
