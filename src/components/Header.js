@@ -5,8 +5,7 @@ const Header = (props) => {
   const auth = props.auth
 
   let headerLinks = auth ? (
-    [<NavLink to="/bucket" activeClassName="active">Bucket</NavLink>,
-    <NavLink to="/account" activeClassName="active">Account</NavLink>,
+    [<NavLink to="/account" activeClassName="active">Account</NavLink>,
     <NavLink to="/logout">Log Out</NavLink>]
   ) : (
     [<NavLink exact to="/" activeClassName="active">Home</NavLink>,

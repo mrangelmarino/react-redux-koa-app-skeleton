@@ -18,7 +18,7 @@ const Main = (props) => {
           !auth ? (
             <LoginScene />
           ) : (
-            <Redirect to="/bucket"/>
+            <Redirect to="/"/>
           )
         )}/>
 

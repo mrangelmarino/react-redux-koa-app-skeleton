@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     postFormData: (data) => {
-      dispatch(action.app.signup(data))
+      dispatch(action.user.signup(data))
     },
     clearMessage: () => dispatch(action.app.clearMessage())
   }
