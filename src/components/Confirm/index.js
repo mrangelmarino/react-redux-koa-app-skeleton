@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import * as action from '../actions'
-import Confirm from '../components/Confirm'
+import * as user from './actions'
+import Confirm from './component'
 
 const mapStateToProps = state => {
   return {
@@ -14,7 +14,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     confirmEmail: (confirmation) => {
-      dispatch(action.user.confirmation(confirmation))
+      dispatch(user.confirmation(confirmation))
     }
   }
 }

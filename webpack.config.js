@@ -24,27 +24,6 @@ const config = {
       exclude: /node_modules/
     },{
       test: /\.scss$/,
-      include: [
-        path.resolve(__dirname, 'src/css/modules')
-      ],
-      use: [{
-        loader: 'style-loader',
-      },{
-        loader: 'css-loader', options: {
-          sourceMap: development,
-          minimize: !development
-        }
-      },{
-        loader: 'sass-loader', options: {
-          sourceMap: development
-        }
-      }]
-    },{
-      test: /\.scss$/,
-      exclude: [
-        path.resolve(__dirname, 'src/css/modules'),
-        path.resolve(__dirname, 'src/css/partials')
-      ],
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
         use: [{

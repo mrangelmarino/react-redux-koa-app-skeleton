@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormControls, Form } from './Form'
+import { FormControls, Form } from '../Form'
 
 const formControlDataEmail = [{
   name: 'email',

@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import ResetPassword from '../components/ResetPassword'
-import * as action from '../actions'
+import ResetPassword from './component'
+import * as action from './actions'
+import * as app from '../App/actions'
 
 const mapStateToProps = state => {
   return {
@@ -11,9 +12,9 @@ const mapStateToProps = state => {
 
 const mapPropsToDispatch = dispatch => {
   return {
-    postFormDataCode: (data) => dispatch(action.user.resetPasswordCode(data)),
-    postFormDataPassword: (data) => dispatch(action.user.resetPassword(data)),
-    clearMessage: () => dispatch(action.app.clearMessage())
+    postFormDataCode: (data) => dispatch(action.resetPasswordCode(data)),
+    postFormDataPassword: (data) => dispatch(action.resetPassword(data)),
+    clearMessage: () => dispatch(app.clearMessage())
   }
 }
 

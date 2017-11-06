@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
-import * as action from '../actions'
-import Signup from '../components/Signup'
+import * as action from './actions'
+import * as app from '../App/actions'
+import SignUp from './component'
 
 const mapStateToProps = state => {
   return {
@@ -12,13 +13,13 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     postFormData: (data) => {
-      dispatch(action.user.signup(data))
+      dispatch(action.signup(data))
     },
-    clearMessage: () => dispatch(action.app.clearMessage())
+    clearMessage: () => dispatch(app.clearMessage())
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Signup)
+)(SignUp)

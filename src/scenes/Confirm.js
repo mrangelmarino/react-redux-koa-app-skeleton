@@ -1,5 +1,5 @@
 import React from 'react'
-import ConfirmContainer from '../containers/ConfirmContainer'
+import ConfirmContainer from '../components/Confirm'
 
 const ConfirmScene = () => {
   return(

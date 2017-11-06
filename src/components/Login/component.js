@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormControls, Form } from './Form'
+import { FormControls, Form } from '../Form'
 import { Link } from 'react-router-dom'
 
 const formControlData = [{

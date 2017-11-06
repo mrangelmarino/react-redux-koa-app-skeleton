@@ -1,6 +1,6 @@
 import React from 'react'
-import HeaderContainer from '../containers/HeaderContainer'
-import MainContainer from '../containers/MainContainer'
+import HeaderContainer from '../Header'
+import MainContainer from '../Main'
 
 export default class App extends React.Component {
 

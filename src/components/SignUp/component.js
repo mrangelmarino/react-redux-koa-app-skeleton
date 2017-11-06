@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormControls, Form } from '../components/Form'
+import { FormControls, Form } from '../Form'
 import { Redirect } from 'react-router-dom'
 
 const formControlData = [{
@@ -29,7 +29,7 @@ const formControlData = [{
   validate: 'passwordConfirm'
 }]
 
-export default class Signup extends React.Component {
+export default class SignUp extends React.Component {
 
   componentWillUnmount() {
     this.props.clearMessage()

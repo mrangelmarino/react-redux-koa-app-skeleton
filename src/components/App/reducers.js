@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import { LOGIN, LOGOUT, SIGNUP, CLEAR_MESSAGE, CONFIRMATION, RESET_PASSWORD } from '../actions/actionTypes'
+import { LOGIN, LOGOUT, SIGNUP, CLEAR_MESSAGE, CONFIRMATION, RESET_PASSWORD } from './actionTypes'
 import Cookies from 'universal-cookie'
 const cookies = new Cookies()
 
-const authInitialState = () => cookies.get('stkcb') === 'true'
+const authInitialState = () => cookies.get('lclApp') === 'true'
 
 const auth = (state = authInitialState(), action) => {
   switch(action.type) {

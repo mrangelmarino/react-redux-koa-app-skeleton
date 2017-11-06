@@ -1,14 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, withRouter } from 'react-router-dom'
-import * as action from '../actions'
+import * as action from './actions'
 
 class LogoutContainer extends React.Component {
 
   componentWillMount() {
     const { dispatch, id, auth} = this.props
     if(auth) {
-      dispatch(action.user.logout(id))
+      dispatch(action.logout(id))
     }
   }
 

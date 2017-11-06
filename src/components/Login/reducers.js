@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { LOGIN, LOGOUT, SIGNUP, CONFIRMATION } from '../actions/actionTypes'
-import * as api from '../api'
+import { LOGIN, LOGOUT, SIGNUP, CONFIRMATION } from './actionTypes'
+import * as api from '../../api'
 
 const localStore = api.localStorage.get('user')
 
@@ -11,7 +11,7 @@ const userInitialState = {
   active: localStore.active || ''
 }
 
-export const user = (state = userInitialState, action) => {
+const login = (state = userInitialState, action) => {
   switch(action.type) {
     case LOGIN:
       return action.payload.auth === false ? state : {
@@ -20,14 +20,9 @@ export const user = (state = userInitialState, action) => {
         nameLast: action.payload.nameLast,
         active: action.payload.active
       }
-    case SIGNUP:
-    case CONFIRMATION:
-      return {
-        active: action.payload.active
-      }
-    case LOGOUT:
-      return {}
     default:
       return state
   }
 }
+
+export default login

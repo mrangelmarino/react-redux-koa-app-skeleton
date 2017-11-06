@@ -1,8 +1,8 @@
 import React from 'react'
 import { Redirect } from 'react-router'
 
-import Home from '../scenes/Home'
-import NotFound from '../scenes/NotFound'
+import Home from '../../scenes/Home'
+import NotFound from '../../scenes/NotFound'
 
 const Static = (props) => {
   const auth = props.auth

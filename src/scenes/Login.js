@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginContainer from '../containers/LoginContainer'
+import LoginContainer from '../components/Login'
 
 const LoginScene = () => {
     return(
