@@ -1,9 +1,9 @@
 import React from 'react'
-import SignupContainer from '../components/SignUp'
+import SignUp from '../components/SignUp'
 
 const SignupScene = () => {
   return(
-    <SignupContainer/>
+    <SignUp/>
   )
 }
 

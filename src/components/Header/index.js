@@ -7,9 +7,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const HeaderContainer = connect(
+export default connect(
   mapStateToProps,
   null
 )(Header)
-
-export default HeaderContainer

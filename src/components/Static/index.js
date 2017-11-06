@@ -7,9 +7,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const StaticContainer = connect(
+export default connect(
   mapStateToProps,
   null
 )(Static)
-
-export default StaticContainer

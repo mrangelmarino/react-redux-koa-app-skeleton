@@ -1,9 +1,9 @@
 import React from 'react'
-import ConfirmContainer from '../components/Confirm'
+import Confirm from '../components/Confirm'
 
 const ConfirmScene = () => {
   return(
-    <ConfirmContainer/>
+    <Confirm/>
   )
 }
 
