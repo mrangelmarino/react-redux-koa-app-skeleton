@@ -26,7 +26,7 @@ const Main = (props) => {
           !auth ? (
             <SignupScene />
           ) : (
-            <Redirect to="/bucket"/>
+            <Redirect to="/"/>
           )
         )}/>
 
