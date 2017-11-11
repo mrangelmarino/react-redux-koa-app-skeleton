@@ -10,8 +10,16 @@ const session = require('koa-session');
 const passport = require('koa-passport');
 const mailer = require('./lib/mailer');
 
+const https = require('https');
 const env = process.env.NODE_ENV;
 const path = require('path');
+const fs = require('fs');
+
+// ssl
+const options = {
+  key: fs.readFileSync('./cert/server.key'),
+  cert: fs.readFileSync('./cert/server.crt')
+}
 
 // middleware
 app.use(static('public'));
@@ -35,4 +43,4 @@ require('./lib/authentication')(database.db);
 app.use(router(session({ key: 'lclApp' }, app)));
 
 // start server
-app.listen(3000, console.log('Server started'));
+https.createServer(options, app.callback()).listen(3000, console.log('Server started'));
