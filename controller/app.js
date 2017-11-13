@@ -4,7 +4,7 @@ class App {
     let isAuth = ctx.isAuthenticated();
     isAuth = isAuth.toString();
 
-    ctx.cookies.set('lclApp', isAuth, { httpOnly: false });
+    ctx.cookies.set('ppaLcl', isAuth, { httpOnly: false });
 
     await ctx.render('index');
 
