@@ -3,7 +3,7 @@ import { LOGIN, LOGOUT, SIGNUP, CLEAR_MESSAGE, CONFIRMATION, RESET_PASSWORD } fr
 import Cookies from 'universal-cookie'
 const cookies = new Cookies()
 
-const authInitialState = () => cookies.get('lclApp') === 'true'
+const authInitialState = () => cookies.get('ppaLcl') === 'true'
 
 const auth = (state = authInitialState(), action) => {
   switch(action.type) {
