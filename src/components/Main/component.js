@@ -6,6 +6,7 @@ import Static from '../Static'
 import LogOut from '../LogOut'
 import ConfirmScene from '../../scenes/Confirm'
 import ResetPasswordScene from '../../scenes/ResetPassword'
+import UpgradeScene from '../../scenes/Upgrade'
 
 const Main = (props) => {
   const auth = props.auth
@@ -27,6 +28,14 @@ const Main = (props) => {
             <SignupScene />
           ) : (
             <Redirect to="/"/>
+          )
+        )}/>
+
+        <Route exact path="/upgrade" render={() => (
+          !auth ? (
+            <Redirect to="/signup"/>
+          ) : (
+            <UpgradeScene />
           )
         )}/>
 

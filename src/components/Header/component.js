@@ -5,8 +5,10 @@ const Header = (props) => {
   const auth = props.auth
 
   let headerLinks = auth ? (
-    [<NavLink to="/account" activeClassName="active">Account</NavLink>,
-    <NavLink to="/logout">Log Out</NavLink>]
+    [<NavLink to="/upgrade" activeClassName="active">Upgrade your Account</NavLink>,
+    <NavLink to="/account" activeClassName="active">Account</NavLink>,
+    <NavLink to="/logout">Log Out</NavLink>
+    ]
   ) : (
     [<NavLink exact to="/" activeClassName="active">Home</NavLink>,
     <NavLink to="/login" activeClassName="active">Log In</NavLink>,
@@ -18,7 +20,6 @@ const Header = (props) => {
       <li key={index}>{headerLink}</li>
     )
   })
-
 
   return (
     <header>

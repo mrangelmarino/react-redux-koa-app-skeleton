@@ -49,7 +49,7 @@ export default class SignUp extends React.Component {
     } else {
       return(
         <div className="well">
-          <p className="lead">Sign up.</p>
+          <p className="lead">Sign up for a Free Trial.</p>
           <Form postFormData={(data) => this.props.postFormData(data)}>
             {formControls}
           </Form>

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bootstrap App Quickly with this App Skeleton</title>
   <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <script src="https://js.stripe.com/v3/" defer></script>
   <script src="/js/main.bundle.js" defer></script>
 </head>
 
