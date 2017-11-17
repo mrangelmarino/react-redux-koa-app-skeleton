@@ -1,6 +1,8 @@
 const Koa = require('koa');
 const app = new Koa();
 
+require('dotenv').config()
+
 const static = require('koa-static');
 const views = require('koa-views');
 const bodyParser = require('koa-body');
@@ -11,7 +13,6 @@ const passport = require('koa-passport');
 const mailer = require('./lib/mailer');
 
 const https = require('https');
-const env = process.env.NODE_ENV;
 const path = require('path');
 const fs = require('fs');
 
