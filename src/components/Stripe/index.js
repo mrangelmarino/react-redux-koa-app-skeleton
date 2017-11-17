@@ -15,10 +15,14 @@ class _CardForm extends React.Component {
 
   render() {
     return(
-      <form onSubmit={this.handleSubmit}>
-        <CardElement />
-        <button>Pay</button>
-      </form>
+      <div className="well">
+        <p className="lead">Enter Your Credit Card to Upgrade</p>
+        <p>You can cancel at any time.</p>
+        <form onSubmit={this.handleSubmit}>
+          <CardElement />
+          <button>Pay</button>
+        </form>
+      </div>
     )
   }
 }
@@ -28,7 +32,7 @@ const CardForm = injectStripe(_CardForm)
 export default class Stripe extends React.Component {
   render() {
     return(
-      <StripeProvider apiKey="pk_test_w2zeVQUNc2tFNiO4La5yWzEf">
+      <StripeProvider apiKey={process.env.STRIPE_PUBLIC_KEY}>
           <Elements>
             <CardForm/>
           </Elements>

@@ -1,6 +1,7 @@
 const path = require('path');
 const dotEnv = require('dotenv').config();
 const env = process.env.NODE_ENV;
+const STRIPE_PUBLIC_KEY = dotEnv.STRIPE_PUBLIC_KEY || process.env.STRIPE_PUBLIC_KEY
 const development = env === 'development';
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
@@ -65,7 +66,8 @@ const config = {
     new webpack.DefinePlugin({
       process: {
         env: {
-          NODE_ENV: JSON.stringify(env)
+          NODE_ENV: JSON.stringify(env),
+          STRIPE_PUBLIC_KEY: JSON.stringify(STRIPE_PUBLIC_KEY)
         }
       }
     })
