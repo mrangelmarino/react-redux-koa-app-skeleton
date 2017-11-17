@@ -1,4 +1,5 @@
 const path = require('path');
+const dotEnv = require('dotenv').config();
 const env = process.env.NODE_ENV;
 const development = env === 'development';
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -62,7 +63,11 @@ const config = {
       allChunks: true
     }),
     new webpack.DefinePlugin({
-      ENV: JSON.stringify(env)
+      process: {
+        env: {
+          NODE_ENV: JSON.stringify(env)
+        }
+      }
     })
   ],
   output: {
