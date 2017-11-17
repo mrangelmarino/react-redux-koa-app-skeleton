@@ -2,7 +2,7 @@ import promiseMiddleware from 'redux-promise'
 
 const middlewares = [promiseMiddleware]
 
-if (ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   const { createLogger } =  require('redux-logger')
   const logger = createLogger({
     duration: true
