@@ -42,6 +42,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     failed_logins: {
       type: Sequelize.INTEGER
+    },
+    customer_id: {
+      type: Sequelize.TEXT
+    },
+    customer_plan: {
+      type: Sequelize.TEXT
+    },
+    customer_expiration: {
+      type: Sequelize.TEXT
     }
   }, {
     timestamps: true,
