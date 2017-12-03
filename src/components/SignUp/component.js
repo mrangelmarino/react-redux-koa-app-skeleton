@@ -1,33 +1,6 @@
 import React from 'react'
-import { FormControls, Form } from '../Form'
+import { Form, FormControl, FormButton } from '../Form'
 import { Redirect } from 'react-router-dom'
-
-const formControlData = [{
-  name: 'firstName',
-  type: 'text',
-  placeholder: 'First Name',
-  validate: 'required'
-},{
-  name: 'lastName',
-  type: 'text',
-  placeholder: 'Last Name',
-  validate: 'required'
-},{
-  name: 'email',
-  type: 'email',
-  placeholder: 'Email',
-  validate: 'email'
-},{
-  name: 'password',
-  type: 'password',
-  placeholder: 'Password',
-  validate: 'password'
-},{
-  name: 'passwordConfirm',
-  type: 'password',
-  placeholder: 'Confirm Password',
-  validate: 'passwordConfirm'
-}]
 
 export default class SignUp extends React.Component {
 
@@ -36,12 +9,6 @@ export default class SignUp extends React.Component {
   }
 
   render() {
-    const formControls = FormControls(formControlData)
-    const message = this.props.message ? (
-      <div className="alert alert-danger">
-        {this.props.message}
-      </div>
-    ) : '';
     const active = this.props.active
 
     if(active === null) {
@@ -50,10 +17,48 @@ export default class SignUp extends React.Component {
       return(
         <div className="well">
           <p className="lead">Sign up.</p>
-          <Form postFormData={(data) => this.props.postFormData(data)}>
-            {formControls}
+
+          <Form message={this.props.message} validateMessage="Please complete all fields before continuing">
+            <FormControl
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+              validate="required"
+              validateMessage="This field is required"
+            />
+            <FormControl
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              validate="required"
+              validateMessage="This field is required"
+            />
+            <FormControl
+              type="email"
+              name="email"
+              placeholder="Email"
+              validate="email"
+              validateMessage="Must be a valid email address"
+            />
+            <FormControl
+              type="password"
+              name="password"
+              placeholder="Password"
+              validate="password"
+              validateMessage="Password must be at least six characters and contain one capital letter and one number"
+            />
+            <FormControl
+              type="password"
+              name="passwordConfirm"
+              placeholder="Confirm Password"
+              validate="passwordConfirm"
+              validateMessage="Passwords must match"
+            />
+            <FormButton
+              value="Sign Up"
+              submit={this.props.postFormData}
+            />
           </Form>
-          {message}
         </div>
       )
     }

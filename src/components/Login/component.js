@@ -1,18 +1,6 @@
 import React from 'react'
-import { FormControls, Form } from '../Form'
+import { Form, FormControl, FormButton } from '../Form'
 import { Link } from 'react-router-dom'
-
-const formControlData = [{
-  name: 'email',
-  type: 'email',
-  placeholder: 'Email',
-  validate: 'required'
-},{
-  name: 'password',
-  type: 'password',
-  placeholder: 'Password',
-  validate: 'required'
-}]
 
 export default class Login extends React.Component {
 
@@ -21,21 +9,32 @@ export default class Login extends React.Component {
   }
 
   render() {
-    const formControls = FormControls(formControlData)
-    const message = this.props.message ? (
-      <div className="alert alert-danger">
-        {this.props.message}
-      </div>
-    ) : '';
-
     return(
       <div className="well">
         <p className="lead">Log In.</p>
-        <Form postFormData={(data) => this.props.postFormData(data)}>
-          {formControls}
+        <Form
+          validateMessage="Please use a valid email address and password before continuing."
+          message={this.props.message}>
+          <FormControl
+            type="email"
+            placeholder="Email"
+            name="email"
+            validate="email"
+            validateMessage="Must be a valid email address"
+          />
+          <FormControl
+            type="password"
+            placeholder="Password"
+            name="password"
+            validate="password"
+            validateMessage="Password must be at least six characters and contain one capital letter and one number"
+          />
+          <FormButton
+            value="Log In"
+            submit={this.props.postFormData}
+          />
         </Form>
         <p><Link to="/reset">Reset your password.</Link></p>
-        {message}
       </div>
     )
   }

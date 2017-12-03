@@ -1,0 +1,68 @@
+$placeholder: #c9ccc9
+
+:global(::-webkit-input-placeholder) {
+  color: $placeholder;
+}
+
+::-moz-placeholder {
+  color: $placeholder;
+}
+:-ms-input-placeholder {
+  color: $placeholder;
+}
+:-moz-placeholder {
+  color: $placeholder;
+}
+
+.form {
+  &-control {
+
+    &-group {
+      position: relative;
+      margin-bottom: 1em;
+    }
+
+    &-input {
+      width: 100%;
+      padding: .25em;
+      border: 2px solid #00B5D1;
+      font-size: 2em;
+      line-height: 1.3;
+      color: #a6a7a6;
+
+      &:focus {
+        outline: 0;
+      }
+
+      :global(.has-error) & {
+        border-color: #f98e8e;
+      }
+
+      :global(.has-success) & {
+        border-color: #8cca8c;
+      }
+
+    }
+
+    &-tooltip {
+      position: absolute;
+      bottom: calc(100% + .5em);
+      left: .5em;
+      width: 14.5em;
+      padding: .5em;
+      border: 1px solid #e2e2e2;
+      border-radius: 1em 1em 1em 0;
+      background: #FFFFFF;
+      opacity: 0;
+      transform: translateY(1em);
+      transition: opacity .15s linear, transform .25s linear;
+      pointer-events: none;
+
+      :global(.has-tooltip) & {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+  }
+}
