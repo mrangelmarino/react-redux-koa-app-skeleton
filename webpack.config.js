@@ -19,10 +19,19 @@ const config = {
       include: path.resolve(__dirname, 'src'),
       exclude: /node_modules/
     },{
-      test: /\.jsx$/,
-      loader: 'babel-loader',
-      include: path.resolve(__dirname, 'src'),
-      exclude: /node_modules/
+      test: /\.css$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
+          loader: 'css-loader',
+          options: {
+            minimize: !development,
+            modules: true,
+            localIdentName: '[path][name]__[local]--[hash:base64:5]'
+          }
+        },
+        'postcss-loader']
+      })
     },{
       test: /\.scss$/,
       use: ExtractTextPlugin.extract({
@@ -30,16 +39,14 @@ const config = {
         use: [{
           loader: 'css-loader',
           options: {
+            modules: true,
             sourceMap: development,
-            minimize: !development
+            importLoaders: 2,
+            camelCase: true,
+            localIdentName: '[path][name]__[local]--[hash:base64:5]'
           }
-        },{
-          loader: 'sass-loader',
-          options: {
-            sourceMap: development
-          }
-        }],
-        publicPath: '../'
+        },
+        'sass-loader']
       })
     },{
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -57,9 +64,7 @@ const config = {
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: (getPath) => {
-        return getPath('css/[name].css').replace('css/js','css');
-      },
+      filename: getPath => getPath('css/[name].css').replace('css/js','css'),
       allChunks: true
     }),
     new webpack.DefinePlugin({
@@ -76,8 +81,6 @@ const config = {
   }
 };
 
-if(!development) {
-  config.plugins.push(new UglifyJSPlugin());
-}
+if(!development) config.plugins.push(new UglifyJSPlugin())
 
 module.exports = config;
