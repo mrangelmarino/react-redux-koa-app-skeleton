@@ -1,4 +1,5 @@
-import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss'
+import 'bootstrap-css-modules/css/reboot.css'
+import 'bootstrap-css-modules/css/type.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom'

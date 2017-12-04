@@ -1,25 +1,9 @@
 import React from 'react'
-import { FormControls, Form } from '../Form'
+import { Form, FormControl, FormButton } from '../Form'
 
-const formControlDataEmail = [{
-  name: 'email',
-  type: 'email',
-  placeholder: 'Email',
-  validate: 'email'
-}]
-
-let formControlDataPassword = [{
-  name: 'password',
-  type: 'password',
-  placeholder: 'Password',
-  validate: 'password'
-},{
-  name: 'passwordConfirm',
-  type: 'password',
-  placeholder: 'Confirm Password',
-  validate: 'passwordConfirm'
-}]
-
+import { formGroup, formControl } from 'bootstrap-css-modules/css/forms.css'
+import { jumbotron } from 'bootstrap-css-modules/css/jumbotron.css'
+import { btn, btnPrimary } from 'bootstrap-css-modules/css/buttons.css'
 
 export default class ResetPassword extends React.Component {
 
@@ -28,42 +12,74 @@ export default class ResetPassword extends React.Component {
   }
 
   render() {
-    const resetCode = this.props.match.params.resetCode
-    const formControlsEmail = FormControls(formControlDataEmail)
-    formControlDataPassword.push({
-      name: 'resetCode',
-      type: 'hidden',
-      value: resetCode
-    })
-    const formControlsPassword = FormControls(formControlDataPassword)
 
-    const message = this.props.message ? (
-      <div className="alert alert-danger">
-        {this.props.message}
-      </div>
-    ) : '';
+    const resetCode = this.props.match.params.resetCode
 
     if(resetCode) {
       return (
-        <div className="well">
-          <p className="lead">Reset Password.</p>
+
+        <div className={jumbotron}>
+          <h1 className="display3">Reset Password.</h1>
           <p>Enter your new password below.</p>
-          <Form postFormData={(data) => this.props.postFormDataPassword(data)}>
-            {formControlsPassword}
+          <Form message={this.props.message}>
+            <FormControl
+              className={formGroup}
+              inputClassName={formControl}
+              name="password"
+              type="password"
+              placeholder="Password"
+              validate="password"
+              validateMessage="Password must be at least six characters and contain one capital letter and one number"
+            />
+            <FormControl
+              className={formGroup}
+              inputClassName={formControl}
+              type="password"
+              name="passwordConfirm"
+              placeholder="Confirm Password"
+              validate="passwordConfirm"
+              validateMessage="Passwords must match"
+            />
+            <FormControl
+              className={formGroup}
+              inputClassName={formControl}
+              type="hidden"
+              name="resetCode"
+              value={resetCode}
+            />
+            <FormButton
+              className={`${btn} ${btnPrimary}`}
+              value="Reset Password"
+              submit={this.props.postFormDataPassword}
+            />
           </Form>
-          {message}
         </div>
+
       )
     } else {
       return (
-        <div className="well">
-          <p className="lead">Reset Password.</p>
+
+        <div className={jumbotron}>
+          <h1 className="display3">Reset Password.</h1>
           <p>Enter your email below and receive a link to reset your password.</p>
-          <Form postFormData={(data) => this.props.postFormDataCode(data)}>
-            {formControlsEmail}
+          <Form message={this.props.message}>
+            <FormControl
+              className={formGroup}
+              inputClassName={formControl}
+              name="email"
+              type="email"
+              placeholder="Email"
+              validate="email"
+              validateMessage="Must be a valid email address"
+            />
+            <FormButton
+              className={`${btn} ${btnPrimary}`}
+              value="Send Link"
+              submit={this.props.postFormDataCode}
+            />
           </Form>
-          {message}
         </div>
+
       )
     }
   }
