@@ -1,7 +1,7 @@
-import style from './style.scss'
-
 import React from 'react'
 import classNames from 'classnames'
+
+import style from './style.scss'
 
 export default class Control extends React.Component {
   constructor(){
@@ -42,6 +42,8 @@ export default class Control extends React.Component {
     const name = this.props.name
     const value = formData.value
     const valid = formData.valid
+    const inputClassName = this.props.inputClassName ? this.props.inputClassName : ''
+    const messageClassName = this.props.messageClassName ? this.props.messageClassName : ''
 
     const dynamicClasses = classNames({
       'has-tooltip': this.state.focus && !valid,
@@ -56,9 +58,9 @@ export default class Control extends React.Component {
       case 'email':
       case 'password':
         return(
-          <div className={dynamicClasses + (this.props.className ? ' ' + this.props.className : '')}>
+          <div className={style.formControlGroup + ' ' + dynamicClasses + (this.props.className ? ' ' + this.props.className : '')}>
             <input
-              className={style.formControlInput}
+              className={style.formControlInput + ' ' + inputClassName}
               type={controlType}
               name={name}
               value={value}
@@ -71,13 +73,14 @@ export default class Control extends React.Component {
               onFocus={() => this.setFocus()}
               onBlur={() => this.setFocus()}
             />
-            <span>{this.props.validateMessage}</span>
+            <span className={style.formControlTooltip + ' ' + messageClassName}>{this.props.validateMessage}</span>
           </div>
         )
       case 'hidden':
         return(
           <div className={(this.props.className ? ' ' + this.props.className : '')}>
             <input
+              className={inputClassName}
               type={controlType}
               name={name}
               value={this.props.value}

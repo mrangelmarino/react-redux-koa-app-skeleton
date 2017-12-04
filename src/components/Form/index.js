@@ -1,8 +1,8 @@
-import style from './style.scss'
-
 import React from 'react'
 import Control from './Control'
 import Button from './Button'
+
+import style from './style.scss'
 
 export { Control as FormControl }
 export { Button as FormButton }
@@ -160,7 +160,7 @@ export class Form extends React.Component {
     const userClasses = (this.props.className ? ' ' + this.props.className : '')
 
     return(
-      <form className={userClasses} onSubmit={event => event.preventDefault()}>
+      <form className={userClasses} onSubmit={event => event.preventDefault()} noValidate>
         {this.renderFormControls(this.props.children)}
         <p className={style.formMessage + (message ? ' active' : '') + ' form-message'}>{message}</p>
       </form>

@@ -2,6 +2,10 @@ import React from 'react'
 import { Form, FormControl, FormButton } from '../Form'
 import { Link } from 'react-router-dom'
 
+import { formGroup, formControl } from 'bootstrap-css-modules/css/forms.css'
+import { jumbotron } from 'bootstrap-css-modules/css/jumbotron.css'
+import { btn, btnPrimary } from 'bootstrap-css-modules/css/buttons.css'
+
 export default class Login extends React.Component {
 
   componentWillUnmount() {
@@ -10,12 +14,14 @@ export default class Login extends React.Component {
 
   render() {
     return(
-      <div className="well">
-        <p className="lead">Log In.</p>
+      <div className={jumbotron}>
+        <h1 className="display3">Log In.</h1>
         <Form
           validateMessage="Please use a valid email address and password before continuing."
           message={this.props.message}>
           <FormControl
+            className={formGroup}
+            inputClassName={formControl}
             type="email"
             placeholder="Email"
             name="email"
@@ -23,6 +29,8 @@ export default class Login extends React.Component {
             validateMessage="Must be a valid email address"
           />
           <FormControl
+            className={formGroup}
+            inputClassName={formControl}
             type="password"
             placeholder="Password"
             name="password"
@@ -30,6 +38,7 @@ export default class Login extends React.Component {
             validateMessage="Password must be at least six characters and contain one capital letter and one number"
           />
           <FormButton
+            className={`${btn} ${btnPrimary}`}
             value="Log In"
             submit={this.props.postFormData}
           />
