@@ -46,6 +46,9 @@ module.exports = (sequelize, DataTypes) => {
     customer_id: {
       type: Sequelize.TEXT
     },
+    customer_subscription: {
+      type: Sequelize.TEXT
+    },
     customer_plan: {
       type: Sequelize.TEXT
     },
