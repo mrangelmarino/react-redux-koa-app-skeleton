@@ -9,7 +9,9 @@ import { btn, btnPrimary } from 'bootstrap-css-modules/css/buttons.css'
 export default class SignUp extends React.Component {
 
   componentWillUnmount() {
-    this.props.clearMessage()
+    if(this.props.message) {
+      this.props.clearMessage()
+    }
   }
 
   render() {

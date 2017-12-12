@@ -12,11 +12,18 @@ export const login = data => {
         nameLast: loginStatus.nameLast,
         active: loginStatus.active
       })
+
+      dispatch({
+        type: LOGIN,
+        payload: loginStatus
+      })
     }
 
-    dispatch({
-      type: LOGIN,
-      payload: loginStatus
-    })
+    if(loginStatus.message) {
+      dispatch({
+        type: 'ADD_MESSAGE',
+        payload: loginStatus.message
+      })
+    }
   }
 }

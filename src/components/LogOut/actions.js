@@ -13,8 +13,14 @@ export const logout = id => {
       type: LOGOUT,
       payload: {
         auth: logoutStatus.auth,
-        message: logoutStatus.message
       }
     })
+
+    if(logoutStatus.message) {
+      dispatch({
+        type: 'ADD_MESSAGE',
+        payload: logoutStatus.message
+      })
+    }
   }
 }

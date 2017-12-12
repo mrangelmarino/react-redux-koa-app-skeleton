@@ -109,7 +109,6 @@ export class Form extends React.Component {
 
       // send data to action
       // this is the function passed from the button via the submit prop
-      console.log(formDataValueMap)
       action(formDataValueMap)
     } else {
       // send custom form validation message

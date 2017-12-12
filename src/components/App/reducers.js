@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { LOGIN, LOGOUT, SIGNUP, CLEAR_MESSAGE, CONFIRMATION, RESET_PASSWORD } from './actionTypes'
+import { LOGIN, LOGOUT, ADD_MESSAGE, CLEAR_MESSAGE } from './actionTypes'
 import Cookies from 'universal-cookie'
 const cookies = new Cookies()
 
@@ -17,15 +17,12 @@ const auth = (state = authInitialState(), action) => {
 
 const message = (state = '', action) => {
   switch(action.type) {
-    case LOGIN:
-    case LOGOUT:
-    case SIGNUP:
-    case CONFIRMATION:
-    case RESET_PASSWORD:
-        return action.payload.message || state
+    case ADD_MESSAGE:
+      return action.payload
     case CLEAR_MESSAGE:
-    default:
       return ''
+    default:
+      return state
   }
 }
 

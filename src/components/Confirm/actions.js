@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SIGNUP, CONFIRMATION, RESET_PASSWORD } from './actionTypes'
+import { CONFIRMATION } from './actionTypes'
 import * as api from '../../api'
 
 export const confirmation = confirmation => {
@@ -15,8 +15,14 @@ export const confirmation = confirmation => {
       type: CONFIRMATION,
       payload: {
         active: confirmationStatus.active,
-        message: confirmationStatus.message
       }
     })
+
+    if(confirmationStatus.message) {
+      dispatch({
+        type: 'ADD_MESSAGE',
+        payload: confirmationStatus.message
+      })
+    }
   }
 }
