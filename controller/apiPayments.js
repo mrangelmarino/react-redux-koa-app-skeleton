@@ -6,52 +6,39 @@ const stripe = require('stripe')(STRIPE_SECRET_KEY)
 class ApiPayments {
 
   static async subscribe(ctx, next) {
-    const userId = ctx.session.passport.user
     const token = ctx.request.body.token
-
-    const user = await getUser(userId)
+    const user = ctx.req.user
     const customer = await createCustomer(user, token)
     const subscription = await subscribeCustomer(user, customer)
     const subscribedUser = await updateUser(user, customer, subscription)
 
-    // then return data so subscribed state can be saved in client
-
     await next()
 
     ctx.set('Content-Type', 'application/json');
-    ctx.body = JSON.stringify({})
-
+    ctx.status = subscribedUser ? 200 : 500
+    ctx.body = {
+      message: subscribedUser ? 'Subscribed successfully!' : 'There was a problem processing your subscription.',
+      ...subscribedUser && { plan: subscribedUser.customer_plan }
+    }
 
     // functions
 
-    async function getUser(id) {
-      try {
-        return await ctx.db.user.findOne({
-          where: { id: id },
-          attributes: ['id', 'email', 'customer_id', 'customer_subscription']
-        })
-      } catch(error) {
-        console.log(error)
-      }
-    }
-
     async function createCustomer(usr, tok) {
       if (usr && tok) {
-        try {
-          const customerId = usr.get('customer_id')
+        const customerId = usr.customer_id
 
-          return await customerId ? (
-            stripe.customers.retrieve(customerId)
-          ) : (
-            stripe.customers.create({
-              email: usr.get('email'),
-              source: tok.id
-            })
-          )
-        } catch (error) {
-          console.log(error)
-        }
-
+        return customerId ? (
+          await stripe.customers.retrieve(customerId).catch(function(error) {
+            console.log(error)
+          })
+        ) : (
+          await stripe.customers.create({
+            email: usr.email,
+            source: tok.id
+          }).catch(function(error){
+            console.log(error)
+          })
+        )
       }
     }
 
@@ -59,26 +46,23 @@ class ApiPayments {
       const subscription = usr.get('customer_subscription')
 
       if (cust && !subscription) {
-        try {
-
-          return await stripe.subscriptions.create({
-            customer: cust.id,
-            items: [
-              {
-                plan: STRIPE_PLAN
-              }
-            ]
-          })
-        } catch(error) {
+        return await stripe.subscriptions.create({
+          customer: cust.id,
+          items: [
+            {
+              plan: STRIPE_PLAN
+            }
+          ]
+        }).catch(function(error) {
           console.log(error)
-        }
+        })
       }
     }
 
     async function updateUser(usr, cust, sub) {
       const update = {}
 
-      if (cust) { update.customer_id = cust.id }
+      if (cust && !usr.customer_id) { update.customer_id = cust.id }
 
       if (sub) {
         Object.assign(update, {
@@ -88,12 +72,10 @@ class ApiPayments {
         })
       }
 
-      if (usr && update) {
-        try {
-          return await usr.update(update)
-        } catch(error) {
-          console.log(error)
-        }
+      if (usr && Object.keys(update).length) {
+        return await usr.update(update).catch(function(error) {
+          console.log(errors)
+        })
       }
     }
 

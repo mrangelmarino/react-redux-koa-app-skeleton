@@ -6,9 +6,9 @@ export default class Stripe extends React.Component {
   render() {
     return(
       <StripeProvider apiKey={process.env.STRIPE_PUBLIC_KEY}>
-          <Elements>
-            <CardForm/>
-          </Elements>
+        <Elements>
+          <CardForm/>
+        </Elements>
       </StripeProvider>
     )
   }

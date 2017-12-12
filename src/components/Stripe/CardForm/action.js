@@ -14,8 +14,12 @@ export const subscribe = async (data) => {
     // send to payments endpoint on server
     const subscription = await api.payments.subscribe(data.token)
     console.log('subscription', subscription)
-    // return {
-    //
-    // }
+    const plan = subscription.plan
+    return {
+      type: SUBSCRIBE,
+      payload: {
+        message: subscription.message
+      }
+    }
   }
 }

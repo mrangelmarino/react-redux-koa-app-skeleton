@@ -30,7 +30,17 @@ const message = (state = '', action) => {
   }
 }
 
+const plan = (state = null, action) => {
+  switch(action.type) {
+    case SUBSCRIBE:
+      return action.payload.plan
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   auth,
-  message
+  message,
+  plan
 })
