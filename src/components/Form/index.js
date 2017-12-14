@@ -1,11 +1,11 @@
 import React from 'react'
 import Control from './Control'
 import Button from './Button'
-
-import style from './style.scss'
+import Message from './Message'
 
 export { Control as FormControl }
 export { Button as FormButton }
+export { Message as FormMessage }
 
 export class Form extends React.Component {
   constructor(props) {
@@ -141,6 +141,12 @@ export class Form extends React.Component {
         })
       }
 
+      if(child.type == Message) {
+        return React.cloneElement(child, {
+          message: this.state.message ? this.state.message : this.props.message
+        })
+      }
+
       // if formControl is inside presentational component,
       // traverse that, otherwise just return whatever's there
       if(child.props && child.props.children) {
@@ -153,15 +159,12 @@ export class Form extends React.Component {
   }
 
   render() {
-    // either flash default validation message or api response message passed through props
-    let message = this.state.message ? this.state.message : this.props.message
     // pass in user supplied class names from component
     const userClasses = (this.props.className ? ' ' + this.props.className : '')
 
     return(
       <form className={userClasses} onSubmit={event => event.preventDefault()} noValidate>
         {this.renderFormControls(this.props.children)}
-        <p className={style.formMessage + (message ? ' active' : '') + ' form-message'}>{message}</p>
       </form>
     )
 
