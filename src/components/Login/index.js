@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
-import * as user from './actions'
-import * as app from '../App/actions'
+import * as action from './actions'
 import Login from './component'
 
 const mapStateToProps = state => {
@@ -12,9 +11,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     postFormData: data => {
-      dispatch(user.login(data))
-    },
-    clearMessage: () => dispatch(app.clearMessage())
+      dispatch(action.login(data))
+    }
   }
 }
 

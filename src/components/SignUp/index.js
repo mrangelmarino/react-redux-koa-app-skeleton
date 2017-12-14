@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import * as action from './actions'
-import * as app from '../App/actions'
 import SignUp from './component'
 
 const mapStateToProps = state => {
@@ -14,8 +13,7 @@ const mapDispatchToProps = dispatch => {
   return {
     postFormData: (data) => {
       dispatch(action.signup(data))
-    },
-    clearMessage: () => dispatch(app.clearMessage())
+    }
   }
 }
 

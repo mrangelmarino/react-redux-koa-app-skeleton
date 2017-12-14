@@ -1,8 +1,14 @@
 import { combineReducers } from 'redux'
 import reduceReducers from 'reduce-reducers'
 
-// app
-import app from '../components/App/reducers'
+// auth
+import auth from '../components/Auth/reducers'
+
+// message
+import message from '../components/Form/Message/reducers'
+
+// plan
+import plan from '../components/App/reducers'
 
 // user
 import login from '../components/Login/reducers'
@@ -19,6 +25,10 @@ const user = reduceReducers(
 
 
 export default combineReducers({
-  app,
+  app: combineReducers({
+    auth,
+    message,
+    plan
+  }),
   user
 })

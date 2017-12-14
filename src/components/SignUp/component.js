@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, FormControl, FormButton } from '../Form'
+import { Form, FormControl, FormButton, FormMessage } from '../Form'
 import { Redirect } from 'react-router-dom'
 
 import { formGroup, formControl } from 'bootstrap-css-modules/css/forms.css'
@@ -7,11 +7,6 @@ import { jumbotron } from 'bootstrap-css-modules/css/jumbotron.css'
 import { btn, btnPrimary } from 'bootstrap-css-modules/css/buttons.css'
 
 export default class SignUp extends React.Component {
-
-  componentWillUnmount() {
-    this.props.clearMessage()
-  }
-
   render() {
     const active = this.props.active
 
@@ -73,6 +68,7 @@ export default class SignUp extends React.Component {
               value="Sign Up"
               submit={this.props.postFormData}
             />
+            <FormMessage />
           </Form>
         </div>
       )

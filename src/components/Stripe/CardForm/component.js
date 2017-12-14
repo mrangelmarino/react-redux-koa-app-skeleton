@@ -1,13 +1,8 @@
 import React from 'react'
 import { CardElement } from 'react-stripe-elements'
-import { Form, FormButton } from '../../Form'
+import { Form, FormButton, FormMessage } from '../../Form'
 
 class CardForm extends React.Component {
-
-  componentWillUnmount() {
-    this.props.clearMessage()
-  }
-
   render() {
     return(
       <div className="well">
@@ -19,6 +14,7 @@ class CardForm extends React.Component {
             value="Pay"
             submit={this.props.subscribe}
           />
+          <FormMessage />
         </Form>
       </div>
     )

@@ -1,16 +1,11 @@
 import React from 'react'
-import { Form, FormControl, FormButton } from '../Form'
+import { Form, FormControl, FormButton, FormMessage } from '../Form'
 
 import { formGroup, formControl } from 'bootstrap-css-modules/css/forms.css'
 import { jumbotron } from 'bootstrap-css-modules/css/jumbotron.css'
 import { btn, btnPrimary } from 'bootstrap-css-modules/css/buttons.css'
 
 export default class ResetPassword extends React.Component {
-
-  componentWillUnmount() {
-    this.props.clearMessage()
-  }
-
   render() {
 
     const resetCode = this.props.match.params.resetCode
@@ -52,6 +47,7 @@ export default class ResetPassword extends React.Component {
               value="Reset Password"
               submit={this.props.postFormDataPassword}
             />
+            <FormMessage />
           </Form>
         </div>
 
@@ -77,6 +73,7 @@ export default class ResetPassword extends React.Component {
               value="Send Link"
               submit={this.props.postFormDataCode}
             />
+            <FormMessage />
           </Form>
         </div>
 

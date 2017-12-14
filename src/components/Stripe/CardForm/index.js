@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import { injectStripe } from 'react-stripe-elements'
 import CardForm from './component'
-import * as app from '../../App/actions'
 import * as action from './action'
 
 const mapStateToProps = state => {
@@ -16,8 +15,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       ownProps.stripe.createToken().then(payload => {
         dispatch(action.subscribe(payload))
       })
-    },
-    clearMessage: () => dispatch(app.clearMessage())
+    }
   }
 }
 

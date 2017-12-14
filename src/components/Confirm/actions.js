@@ -1,18 +1,28 @@
-import { LOGIN, LOGOUT, SIGNUP, CONFIRMATION, RESET_PASSWORD } from './actionTypes'
+import { CONFIRMATION } from './actionTypes'
 import * as api from '../../api'
 
-export const confirmation = async (confirmation) => {
-  const confirmationStatus = await api.user.confirmation(confirmation);
-  if(confirmationStatus.active === true) {
-    api.localStorage.set('user', {
-      active: confirmationStatus.active
+export const confirmation = confirmation => {
+  return async dispatch => {
+    const confirmationStatus = await api.user.confirmation(confirmation);
+
+    if(confirmationStatus.active === true) {
+      api.localStorage.set('user', {
+        active: confirmationStatus.active
+      })
+    }
+
+    dispatch({
+      type: CONFIRMATION,
+      payload: {
+        active: confirmationStatus.active,
+      }
     })
-  }
-  return {
-    type: CONFIRMATION,
-    payload: {
-      active: confirmationStatus.active,
-      message: confirmationStatus.message
+
+    if(confirmationStatus.message) {
+      dispatch({
+        type: 'ADD_MESSAGE',
+        payload: confirmationStatus.message
+      })
     }
   }
 }
