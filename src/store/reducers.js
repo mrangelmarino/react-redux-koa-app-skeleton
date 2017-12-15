@@ -8,7 +8,7 @@ import auth from '../components/Auth/reducers'
 import message from '../components/Form/Message/reducers'
 
 // plan
-import plan from '../components/App/reducers'
+import plan from '../components/Stripe/CardForm/reducers'
 
 // user
 import login from '../components/Login/reducers'
@@ -22,7 +22,6 @@ const user = reduceReducers(
   confirmation,
   logout
 )
-
 
 export default combineReducers({
   app: combineReducers({
