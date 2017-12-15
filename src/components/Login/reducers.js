@@ -5,16 +5,16 @@ import * as api from '../../api'
 const localStore = api.localStorage.get('user')
 
 const userInitialState = {
-  id: localStore.id || null,
-  nameFirst: localStore.nameFirst || '',
-  nameLast: localStore.nameLast || '',
-  active: localStore.active || ''
+  id: localStore ? localStore.id : null,
+  nameFirst: localStore ? localStore.nameFirst : '',
+  nameLast: localStore ? localStore.nameLast : '',
+  active: localStore ? localStore.active : ''
 }
 
 const login = (state = userInitialState, action) => {
   switch(action.type) {
     case LOGIN:
-      return action.payload.auth === false ? state : {
+      return {
         id: action.payload.id,
         nameFirst: action.payload.nameFirst,
         nameLast: action.payload.nameLast,
