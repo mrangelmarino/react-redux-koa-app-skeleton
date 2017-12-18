@@ -5,7 +5,7 @@ export const signup = data => {
   return async dispatch => {
     const signupStatus = await api.user.signup(data)
 
-    if(signupStatus) {
+    if(signupStatus && !signupStatus.message) {
       dispatch({
         type: SIGNUP,
         payload: {

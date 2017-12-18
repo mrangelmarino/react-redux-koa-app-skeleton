@@ -5,7 +5,7 @@ import * as action from './actions'
 
 const mapStateToProps = state => {
   return {
-    message: state.app.message
+    message: state.message
   }
 }
 

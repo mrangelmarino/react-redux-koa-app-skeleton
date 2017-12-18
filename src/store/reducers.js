@@ -22,9 +22,7 @@ const user = reduceReducers(
 
 
 export default combineReducers({
-  app: combineReducers({
-    auth,
-    message
-  }),
+  auth,
+  message,
   user
 })

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.app.auth
+    auth: state.auth
   }
 }
 

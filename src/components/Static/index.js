@@ -3,7 +3,7 @@ import Static from './component'
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.app.auth
+    auth: state.auth
   }
 }
 

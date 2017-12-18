@@ -25,9 +25,9 @@ class LogoutContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    auth: state.app.auth,
+    auth: state.auth,
     id: state.user.id,
-    message: state.app.message
+    message: state.message
   }
 }
 

@@ -1,13 +1,7 @@
 import { CONFIRMATION } from './actionTypes'
 import * as api from '../../api'
 
-const localStore = api.localStorage.get('user')
-
-const userInitialState = {
-  active: localStore ? localStore.active : ''
-}
-
-const confirmation = (state = userInitialState, action) => {
+const confirmation = (state, action) => {
   switch(action.type) {
     case CONFIRMATION:
       return {

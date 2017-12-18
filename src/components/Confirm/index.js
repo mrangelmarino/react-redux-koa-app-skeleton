@@ -7,7 +7,7 @@ import Confirm from './component'
 const mapStateToProps = state => {
   return {
     active: state.user.active,
-    message: state.app.message
+    message: state.message
   }
 }
 

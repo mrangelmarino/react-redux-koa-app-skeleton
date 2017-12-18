@@ -4,7 +4,7 @@ import SignUp from './component'
 
 const mapStateToProps = state => {
   return {
-    message: state.app.message,
+    message: state.message,
     active: state.user.active
   }
 }

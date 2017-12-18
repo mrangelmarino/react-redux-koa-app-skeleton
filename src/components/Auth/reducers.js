@@ -1,11 +1,7 @@
 import { combineReducers } from 'redux'
 import { LOGIN, LOGOUT } from './actionTypes'
-import Cookies from 'universal-cookie'
-const cookies = new Cookies()
 
-const authInitialState = () => cookies.get('ppaLcl') === 'true'
-
-const auth = (state = authInitialState(), action) => {
+const auth = (state = false, action) => {
   switch(action.type) {
     case LOGIN:
     case LOGOUT:
